@@ -39,7 +39,17 @@ const handleFile = (file) => {
         @file-selected="handleFile"
     />
 
-    <img v-else :src="imageUrl" alt="" class="rounded-2xl mb-5 mt-5 bg-center justify-self-center max-h-[50vh] lg:w-2/4 xl:w-8/12 xl:max-h-[60vh] xl:object-cover"/>
+    <div v-else class="flex justify-center mt-5">
+      <div class="relative w-full lg:w-2/4 xl:w-8/12">
+        <img :src="imageUrl" alt="Uploaded Image"
+             class="rounded-2xl w-full h-auto max-h-[50vh] xl:max-h-[60vh] object-cover"/>
+        <button type="button"
+                class="pi pi-times absolute top-3 right-3 lg:top-4 lg:right-4 text-3xl cursor-pointer p-1 rounded-full bg-black/20 hover:bg-black/40"
+                @click="isFileSelected = false; imageUrl = null"
+                aria-label="Close">
+        </button>
+      </div>
+    </div>
     <!-- Example images carousel -->
     <div v-if="!isFileSelected" class="flex p-3 overflow-x-auto gap-3 lg:h-[35vh]">
       <img v-for="(item, index) in exampleImages" :key="index" :src="item" alt=""
